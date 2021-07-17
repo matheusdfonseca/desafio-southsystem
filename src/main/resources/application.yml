@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    password: root
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/voting
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+url:
+  users:
+    cpf: https://user-info.herokuapp.com/users
+
