@@ -47,7 +47,7 @@ public class AssociateServiceImpl implements AssociateService {
         PermissionVoteEnum status = PermissionVoteEnum.valueOf(permissionVoteService.getStatus(cpf));
 
         if (status.equals(PermissionVoteEnum.UNABLE_TO_VOTE))
-            throw new VotingException("not allowed to vote");
+            throw new VotingException("Not allowed to vote");
 
         return true;
 

@@ -82,6 +82,7 @@ class AssociateControllerTest {
     @Test
     @DisplayName("Method Get By Id - Find Associate By Id")
     void getById_ReturnsAssociate_WhenSuccessful() {
+
         Long expectedId = createValidAssociate().getId();
         AssociateResponse associateResponse = associateController.getById(1L).getBody();
 

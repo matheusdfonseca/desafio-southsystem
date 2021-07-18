@@ -21,8 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static com.southsystem.voting.util.AssociateCreator.createAssociate;
-import static com.southsystem.voting.util.AssociateCreator.createValidAssociate;
+import static com.southsystem.voting.util.AssociateCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,15 +40,12 @@ class AssociateServiceImplTest {
 
     @BeforeEach
     void setUp(){
-        List<Associate> listGetAll = Arrays.asList(createValidAssociate());
-
-        Optional<Associate> associateOptional = Optional.of(createValidAssociate());
 
         BDDMockito.when(associateRepositoryMock.findAll())
-                .thenReturn(listGetAll);
+                .thenReturn(createListValidAssociate());
 
         BDDMockito.when(associateRepositoryMock.findById(ArgumentMatchers.anyLong()))
-                .thenReturn(associateOptional);
+                .thenReturn(createValidOptionalAssociate());
 
         BDDMockito.when(associateRepositoryMock.save(ArgumentMatchers.any()))
                 .thenReturn(createValidAssociate());
@@ -77,12 +73,11 @@ class AssociateServiceImplTest {
     @DisplayName("Method Get by Id - Associate By Id")
     void getById_ReturnsAssociateById_WhenSuccessful() {
         Long expectedId = createValidAssociate().getId();
-        Optional<Associate> associateOptional = associateRepositoryMock.findById(1L);
+        Associate associate = associateService.getById(1L);
 
-        assertThat(associateOptional)
-                .isNotNull()
-                .isNotEmpty();
-        assertThat(associateOptional.get().getId())
+        assertThat(associate)
+                .isNotNull();
+        assertThat(associate.getId())
                 .isEqualTo(expectedId);
 
     }
@@ -93,11 +88,9 @@ class AssociateServiceImplTest {
         BDDMockito.when(associateRepositoryMock.findById(ArgumentMatchers.any()))
                 .thenReturn(Optional.empty());
 
-        Optional<Associate> associateOptional = associateRepositoryMock.findById(1L);
-
-        assertThat(associateOptional).isEmpty();
         assertThatExceptionOfType(VotingException.class)
-                .isThrownBy(() -> associateService.getById(1L));
+                .isThrownBy(() -> associateService.getById(1L))
+                .withMessage("Not found Associate");
 
     }
 
@@ -105,7 +98,9 @@ class AssociateServiceImplTest {
     @DisplayName("Method Save - Save Associate")
     void save_ReturnsAssociate_WhenSuccessfull() {
         Associate expectedAssociate = createValidAssociate();
-        Associate associate = associateRepositoryMock.save(createAssociate());
+
+        Associate associate = associateService.save(createAssociate());
+
         assertThat(associate)
                 .isNotNull()
                 .isEqualTo(expectedAssociate);
@@ -120,13 +115,11 @@ class AssociateServiceImplTest {
     @Test
     @DisplayName("Method Is Permission Vote - Associate can vote")
     void isPermissionVote_ReturnsBoolean_WhenSuccessful() {
-        String cpf = createValidAssociate().getCpf();
-        String status = permissionVoteServiceMock.getStatus(cpf);
-        PermissionVoteEnum value = PermissionVoteEnum.valueOf(status);
+        Boolean permissionVote = associateService.isPermissionVote(createValidAssociate());
 
-        assertThat(value)
-                .isNotNull()
-                .isEqualTo(PermissionVoteEnum.ABLE_TO_VOTE);
+        assertThat(permissionVote)
+                .isTrue()
+                .isNotNull();
     }
 
     @Test
@@ -135,16 +128,9 @@ class AssociateServiceImplTest {
         BDDMockito.when(permissionVoteServiceMock.getStatus(ArgumentMatchers.any()))
                 .thenReturn("UNABLE_TO_VOTE");
 
-        String cpf = createValidAssociate().getCpf();
-        String status = permissionVoteServiceMock.getStatus(cpf);
-        PermissionVoteEnum value = PermissionVoteEnum.valueOf(status);
-
-        assertThat(value)
-                .isNotNull()
-                .isEqualTo(PermissionVoteEnum.UNABLE_TO_VOTE);
-
         assertThatExceptionOfType(VotingException.class)
-                .isThrownBy(() -> associateService.isPermissionVote(createValidAssociate()));
+                .isThrownBy(() -> associateService.isPermissionVote(createValidAssociate()))
+                .withMessage("Not allowed to vote");;
 
 
     }
