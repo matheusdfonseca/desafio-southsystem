@@ -1,5 +1,6 @@
 package com.southsystem.voting.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity @Data @NoArgsConstructor
+@Entity @Data @NoArgsConstructor @AllArgsConstructor
 @Table(name = "sessions")
 public class Session {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
