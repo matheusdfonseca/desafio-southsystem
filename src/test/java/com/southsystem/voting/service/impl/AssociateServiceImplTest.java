@@ -1,8 +1,6 @@
 package com.southsystem.voting.service.impl;
 
 import com.southsystem.voting.domain.Associate;
-import com.southsystem.voting.dto.response.AssociateResponse;
-import com.southsystem.voting.enums.PermissionVoteEnum;
 import com.southsystem.voting.exception.VotingException;
 import com.southsystem.voting.repository.AssociateRepository;
 import com.southsystem.voting.service.PermissionVoteService;
@@ -17,13 +15,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static com.southsystem.voting.util.AssociateCreator.*;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @ExtendWith(SpringExtension.class)
@@ -40,7 +36,6 @@ class AssociateServiceImplTest {
 
     @BeforeEach
     void setUp(){
-
         BDDMockito.when(associateRepositoryMock.findAll())
                 .thenReturn(createListValidAssociate());
 

@@ -3,7 +3,6 @@ package com.southsystem.voting.dto.request;
 import com.southsystem.voting.domain.Associate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 

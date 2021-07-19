@@ -1,10 +1,7 @@
 package com.southsystem.voting.controller;
 
-import com.southsystem.voting.domain.Associate;
 import com.southsystem.voting.domain.Topic;
-import com.southsystem.voting.dto.request.AssociateRequest;
 import com.southsystem.voting.dto.request.TopicRequest;
-import com.southsystem.voting.dto.response.AssociateResponse;
 import com.southsystem.voting.dto.response.TopicResponse;
 import com.southsystem.voting.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;

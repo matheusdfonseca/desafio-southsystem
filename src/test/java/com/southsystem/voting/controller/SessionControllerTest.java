@@ -1,8 +1,6 @@
 package com.southsystem.voting.controller;
 
-import com.southsystem.voting.domain.Associate;
 import com.southsystem.voting.domain.Session;
-import com.southsystem.voting.dto.response.AssociateResponse;
 import com.southsystem.voting.dto.response.SessionResponse;
 import com.southsystem.voting.service.SessionService;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,14 +11,12 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.southsystem.voting.util.AssociateCreator.createValidAssociate;
 import static com.southsystem.voting.util.SessionCreator.createSessionRequest;
 import static com.southsystem.voting.util.SessionCreator.createValidSession;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -17,7 +17,7 @@ public class Session {
     private LocalDateTime timeStart;
     private LocalDateTime timeEnd;
     private Long duration;
-    @OneToMany(mappedBy = "session")
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
     private Set<Vote> votes = new HashSet();
     @ManyToOne @JoinColumn(name = "topic_id")
     private Topic topic;

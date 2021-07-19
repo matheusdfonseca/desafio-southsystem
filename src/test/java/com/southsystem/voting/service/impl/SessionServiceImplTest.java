@@ -1,6 +1,5 @@
 package com.southsystem.voting.service.impl;
 
-import com.southsystem.voting.domain.Associate;
 import com.southsystem.voting.domain.Session;
 import com.southsystem.voting.exception.VotingException;
 import com.southsystem.voting.repository.SessionRepository;
@@ -18,7 +17,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static com.southsystem.voting.util.AssociateCreator.createValidAssociate;
 import static com.southsystem.voting.util.SessionCreator.*;
 import static org.assertj.core.api.Assertions.*;
 

@@ -42,7 +42,7 @@ public class AssociateServiceImpl implements AssociateService {
         repository.delete(associate);
     }
 
-    public Boolean isPermissionVote(Associate associate) {
+    public Boolean  isPermissionVote(Associate associate) {
         String cpf = associate.getCpf();
         PermissionVoteEnum status = PermissionVoteEnum.valueOf(permissionVoteService.getStatus(cpf));
 

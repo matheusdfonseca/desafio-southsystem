@@ -1,10 +1,8 @@
 package com.southsystem.voting.controller;
 
-import com.southsystem.voting.domain.Associate;
 import com.southsystem.voting.dto.request.AssociateRequest;
 import com.southsystem.voting.dto.response.AssociateResponse;
 import com.southsystem.voting.service.AssociateService;
-import com.southsystem.voting.util.AssociateCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,12 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.southsystem.voting.util.AssociateCreator.*;
-import static com.southsystem.voting.util.AssociateCreator.createUpdatedAssociateRequest;
-import static com.southsystem.voting.util.AssociateCreator.createValidAssociate;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -40,10 +35,9 @@ class AssociateControllerTest {
 
     @BeforeEach
     void setUp(){
-        List<Associate> listGetAll = Arrays.asList(createValidAssociate());
 
         BDDMockito.when(associateServiceMock.getAll())
-                .thenReturn(listGetAll);
+                .thenReturn(createListValidAssociate());
 
         BDDMockito.when(associateServiceMock.getById(ArgumentMatchers.anyLong()))
                 .thenReturn(createValidAssociate());

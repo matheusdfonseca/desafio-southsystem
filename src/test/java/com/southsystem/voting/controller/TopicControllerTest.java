@@ -1,9 +1,7 @@
 package com.southsystem.voting.controller;
 
 import com.southsystem.voting.domain.Topic;
-import com.southsystem.voting.dto.request.AssociateRequest;
 import com.southsystem.voting.dto.request.TopicRequest;
-import com.southsystem.voting.dto.response.AssociateResponse;
 import com.southsystem.voting.dto.response.TopicResponse;
 import com.southsystem.voting.service.TopicService;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
-import static com.southsystem.voting.util.AssociateCreator.createUpdatedAssociateRequest;
 import static com.southsystem.voting.util.TopicCreator.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;

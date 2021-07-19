@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static com.southsystem.voting.util.TopicCreator.createTopic;
 import static com.southsystem.voting.util.TopicCreator.createValidTopic;
 
 public class SessionCreator {
@@ -17,20 +16,31 @@ public class SessionCreator {
         Session session = new Session();
         session.setDuration(10L);
         session.setTimeStart(LocalDateTime.of(1995,7,27,7,30));
-        session.setTimeEnd(LocalDateTime.of(1995,7,27,7,40));
+        session.setTimeEnd(LocalDateTime.of(2995,7,27,7,30));
 
         session.setTopic(createValidTopic());
         return session;
     }
 
     public static Session createValidSession(){
-        Session session = new Session();
+        Session session = createSession();
         session.setId(1L);
+        return session;
+    }
+
+    public static Session createSessionClosed(){
+        Session session = new Session();
         session.setDuration(10L);
         session.setTimeStart(LocalDateTime.of(1995,7,27,7,30));
-        session.setTimeEnd(LocalDateTime.of(1995,7,27,7,40));
+        session.setTimeEnd(LocalDateTime.of(1995,7,27,7,31));
 
         session.setTopic(createValidTopic());
+        return session;
+    }
+
+    public static Session createValidSessionClosed(){
+        Session session = createSessionClosed();
+        session.setId(1L);
         return session;
     }
 

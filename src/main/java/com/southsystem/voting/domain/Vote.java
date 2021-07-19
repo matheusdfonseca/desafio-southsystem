@@ -1,12 +1,13 @@
 package com.southsystem.voting.domain;
 
 import com.southsystem.voting.enums.VoteValue;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity @Data @NoArgsConstructor
+@Entity @Data @NoArgsConstructor @AllArgsConstructor
 @Table(name = "votes")
 public class Vote {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -54,8 +54,7 @@ public class VoteServiceImpl implements VoteService {
 
         Associate associate = associateService.getById(request.getAssociate());
         if (validateVote(associate, session)) {
-            vote = request.toVote(associate, session);
-            save(vote);
+            vote = save(request.toVote(associate, session));
         }
 
         return vote;
@@ -67,7 +66,8 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public Boolean validateVote(Associate associate, Session session) {
-        return associateService.isPermissionVote(associate) && !isAssociateVoted(associate, session);
+        return associateService.isPermissionVote(associate)
+                && !isAssociateVoted(associate, session);
     }
 
     @Override
@@ -76,14 +76,7 @@ public class VoteServiceImpl implements VoteService {
         Optional<Vote> isAssociateVoted = repository.findByAssociateAndSession_Topic(associate, topic);
         if (isAssociateVoted.isPresent())
             throw new VotingException("Associate has already voted for this topic");
-        return !isAssociateVoted.isPresent();
-    }
-
-    @Scheduled(fixedDelay = 300000L, initialDelay = 0L, zone = "America/Sao_Paulo")
-    public void teste() {
-        List<Session> sessions  = sessionService.getAllNotClosed();
-
-
+        return isAssociateVoted.isPresent();
     }
 
 }

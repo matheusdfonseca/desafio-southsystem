@@ -6,11 +6,13 @@ import com.southsystem.voting.domain.Session;
 import com.southsystem.voting.domain.Vote;
 import com.southsystem.voting.enums.VoteValue;
 import com.southsystem.voting.exception.VotingException;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor
 public class VoteRequest {
     @NotNull
     private String vote;
