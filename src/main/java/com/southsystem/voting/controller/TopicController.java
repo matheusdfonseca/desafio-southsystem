@@ -4,6 +4,7 @@ import com.southsystem.voting.domain.Topic;
 import com.southsystem.voting.dto.request.TopicRequest;
 import com.southsystem.voting.dto.response.TopicResponse;
 import com.southsystem.voting.service.TopicService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,13 @@ public class TopicController {
     @Autowired
     TopicService service;
 
+    @Operation(summary = "List all topics")
     @GetMapping
     public ResponseEntity<List<TopicResponse>> getAll(){
         return ResponseEntity.ok(TopicResponse.toList(service.getAll()));
     }
 
+    @Operation(summary = "Save topic")
     @PostMapping
     public  ResponseEntity<TopicResponse> save(@RequestBody @Valid TopicRequest request, UriComponentsBuilder uriBuilder){
         Topic topic = service.save(request.ToTopic());
@@ -30,12 +33,14 @@ public class TopicController {
         return ResponseEntity.created(uri).body(new TopicResponse(topic));
     }
 
+    @Operation(summary = "List topic by id")
     @GetMapping("/{id}")
     public ResponseEntity<TopicResponse> getById(@PathVariable Long id) {
         Topic topic = service.getById(id);
         return ResponseEntity.ok(new TopicResponse(topic));
     }
 
+    @Operation(summary = "Update topic by id")
     @PutMapping("/{id}")
     public ResponseEntity<TopicResponse> update(@PathVariable Long id, @RequestBody @Valid TopicRequest request) {
         Topic topic = service.getById(id);
@@ -43,6 +48,7 @@ public class TopicController {
         return ResponseEntity.ok(new TopicResponse(savedTopic));
     }
 
+    @Operation(summary = "Delete topic by id")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Topic topic = service.getById(id);

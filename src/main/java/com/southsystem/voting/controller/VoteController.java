@@ -4,6 +4,7 @@ import com.southsystem.voting.domain.Vote;
 import com.southsystem.voting.dto.request.VoteRequest;
 import com.southsystem.voting.dto.response.VoteResponse;
 import com.southsystem.voting.service.VoteService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ public class VoteController {
     @Autowired
     VoteService service;
 
+    @Operation(summary = "Associate vote on session")
     @PostMapping
     public ResponseEntity<VoteResponse> vote(@RequestBody @Valid VoteRequest request, UriComponentsBuilder uriBuilder) {
         Vote vote = service.vote(request);
