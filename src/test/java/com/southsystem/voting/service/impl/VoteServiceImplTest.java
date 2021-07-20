@@ -1,6 +1,5 @@
 package com.southsystem.voting.service.impl;
 
-import com.southsystem.voting.domain.Associate;
 import com.southsystem.voting.domain.Vote;
 import com.southsystem.voting.exception.VotingException;
 import com.southsystem.voting.repository.VoteRepository;
@@ -19,13 +18,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static com.southsystem.voting.util.AssociateCreator.createAssociate;
 import static com.southsystem.voting.util.AssociateCreator.createValidAssociate;
 import static com.southsystem.voting.util.SessionCreator.createValidSession;
 import static com.southsystem.voting.util.SessionCreator.createValidSessionClosed;
 import static com.southsystem.voting.util.TopicCreator.createValidTopic;
 import static com.southsystem.voting.util.VoteCreator.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @ExtendWith(SpringExtension.class)
 class VoteServiceImplTest{

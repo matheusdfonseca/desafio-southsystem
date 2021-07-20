@@ -12,7 +12,6 @@ import com.southsystem.voting.service.SessionService;
 import com.southsystem.voting.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -28,6 +27,8 @@ public class VoteServiceImpl implements VoteService {
     SessionService sessionService;
     @Autowired
     AssociateService associateService;
+
+
 
     @Override
     public List<Vote> getAll() {
@@ -54,6 +55,7 @@ public class VoteServiceImpl implements VoteService {
 
         Associate associate = associateService.getById(request.getAssociate());
         if (validateVote(associate, session)) {
+            sessionService.closeSession(session);
             vote = save(request.toVote(associate, session));
         }
 
@@ -78,5 +80,6 @@ public class VoteServiceImpl implements VoteService {
             throw new VotingException("Associate has already voted for this topic");
         return isAssociateVoted.isPresent();
     }
+
 
 }

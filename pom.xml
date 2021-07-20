@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.southsystem</groupId>
     <artifactId>voting</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>voting</name>
     <description>Voting system project</description>
     <properties>
@@ -87,6 +87,25 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>2.8.0</version>
+                <configuration>
+                    <from>
+                        <image>gcr.io/distroless/java:8</image>
+                    </from>
+                    <to>
+                        <image>mdutrafonsec/voting-api</image>
+                        <tags>
+                            <tag>${project.version}</tag>
+                        </tags>
+                    </to>
+                    <container>
+                        <mainClass>com.southsystem.voting.VotingApplication</mainClass>
+                    </container>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

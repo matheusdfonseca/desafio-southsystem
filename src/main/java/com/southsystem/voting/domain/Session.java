@@ -32,4 +32,6 @@ public class Session {
         LocalDateTime timeEnd = timeStart.plusMinutes(duration);
         setTimeEnd(timeEnd);
     }
+
+
 }

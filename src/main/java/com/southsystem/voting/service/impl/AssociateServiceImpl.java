@@ -21,10 +21,19 @@ public class AssociateServiceImpl implements AssociateService {
     @Autowired
     VoteService voteService;
 
+    /**
+     * Método responsável por buscar todos os associados registrados no sistema.
+     * @return lista de associados
+     */
     public List<Associate> getAll() {
         return repository.findAll();
     }
 
+    /**
+     * Método para buscar associado por id.
+     * @param id
+     * @return associado encotrado
+     */
     @Override
     public Associate getById(Long id) {
         return repository
@@ -32,16 +41,30 @@ public class AssociateServiceImpl implements AssociateService {
                 .orElseThrow(() -> new VotingException("Not found Associate"));
     }
 
+    /**
+     * Método para salvar um associado.
+     * @param associate
+     * @return associado salvo.
+     */
     @Override
     public Associate save(Associate associate) {
         return repository.save(associate);
     }
 
+    /**
+     * Método para deletar um associada
+     * @param associate
+     */
     @Override
     public void delete(Associate associate) {
         repository.delete(associate);
     }
 
+    /**
+     *  Verifica se associado tem permissão para votar
+     * @param associate
+     * @return true
+     */
     public Boolean  isPermissionVote(Associate associate) {
         String cpf = associate.getCpf();
         PermissionVoteEnum status = PermissionVoteEnum.valueOf(permissionVoteService.getStatus(cpf));

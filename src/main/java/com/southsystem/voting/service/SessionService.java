@@ -7,10 +7,12 @@ import java.util.List;
 
 public interface SessionService {
     List<Session> getAll();
-    List<Session> getAllNotClosed();
+    List<Session> getAllSessionNotClosed();
+    List<Session> getAllIncorretSessionNotClosed();
     Session open(SessionRequest request);
     Session getById(Long id);
     Session save(Session session);
     void delete(Session session);
+    void closeSession(Session session);
 
 }

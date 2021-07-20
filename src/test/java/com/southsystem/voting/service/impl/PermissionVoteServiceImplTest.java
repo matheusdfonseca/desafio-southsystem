@@ -11,10 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static com.southsystem.voting.util.AssociateCreator.createListValidAssociate;
 import static com.southsystem.voting.util.PermissionVoteCreator.createPermissionVoteResponse;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 class PermissionVoteServiceImplTest {

@@ -35,7 +35,7 @@ class SessionServiceImplTest {
         BDDMockito.when(sessionRepositoryMock.findAll())
                 .thenReturn(createListValidSession());
 
-        BDDMockito.when(sessionRepositoryMock.findAllByIsClosedIsFalseAndAndTimeEndIsAfter(ArgumentMatchers.any()))
+        BDDMockito.when(sessionRepositoryMock.findAllByIsClosedIsFalseAndTimeEndIsAfter(ArgumentMatchers.any()))
                 .thenReturn(createListValidSession());
 
         BDDMockito.when(sessionRepositoryMock.findById(ArgumentMatchers.anyLong()))

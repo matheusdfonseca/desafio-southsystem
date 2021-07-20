@@ -10,6 +10,11 @@ public class PermissionVoteServiceImpl implements PermissionVoteService {
     @Autowired
     UserCpfService service;
 
+    /**
+     * Método reponsável por capturar o status vindo do método getPermissionVote da Interface UserCpfService.
+     * @param cpf
+     * @return
+     */
     public String getStatus(String cpf){
         return service.getPermissionVote(cpf).getStatus();
     }

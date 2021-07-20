@@ -3,7 +3,7 @@ spring:
     password: root
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/voting
+    url: jdbc:mysql://localhost:3306/voting?createDatabaseIfNotExist=true
   jpa:
     hibernate:
       ddl-auto: update
